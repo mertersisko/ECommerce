@@ -1,0 +1,64 @@
+﻿
+<div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+  <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
+    <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
+      <div data-kt-menu-trigger="click" class="menu-item">
+        <span class="menu-link">
+          <span class="menu-icon">
+            <span class="svg-icon svg-icon-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
+                <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
+                <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
+                <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
+              </svg>
+            </span>
+          </span>
+          <span class="menu-title">Anasayfa</span>
+          <span class="menu-arrow"></span>
+        </span>
+      </div>
+
+      <div class="menu-item pt-5">
+        <div class="menu-content">
+          <span class="menu-heading fw-bold text-uppercase fs-7">Tanımlamalar</span>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a class="menu-link" asp-controller="ManagerUser" asp-action="List">
+          <span class="menu-icon">
+            <i class="fas fa-user fs-4"></i>
+          </span>
+          <span class="menu-title">Kullanıcı İşlemleri</span>
+        </a>
+      </div>
+
+      <div class="menu-item">
+        <a class="menu-link" asp-controller="Supplier" asp-action="List">
+          <span class="menu-icon">
+            <i class="fas fa-user fs-4"></i>
+          </span>
+          <span class="menu-title">Tedarikçi İşlemleri</span>
+        </a>
+      </div>
+      
+      <div class="menu-item">
+        <a class="menu-link" asp-controller="Category" asp-action="List">
+          <span class="menu-icon">
+            <i class="fas fa-user fs-4"></i>
+          </span>
+          <span class="menu-title">Kategori İşlemleri</span>
+        </a>
+      </div>
+      <div class="menu-item">
+        <a class="menu-link" asp-controller="Product" asp-action="List">
+          <span class="menu-icon">
+            <i class="fas fa-user fs-4"></i>
+          </span>
+          <span class="menu-title">Ürün İşlemleri</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

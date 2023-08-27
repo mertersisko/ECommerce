@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ECommerce.Domain.Entities.Product>
+@{
+  ViewData["Title"] = "Kategorisi Listesi";
+}
+
+<div class="row mt-4">
+  <div class="col-xxl-12">
+    <div class="card card-xxl-stretch mb-5 mb-xl-8">
+      <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1">Ürün Listesi</span>
+        </h3>
+        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover">
+          <a asp-action="Add" class="btn btn-light-primary float-end">
+            <i class="fa fa-plus"></i>Yeni Ürün Ekle
+          </a>
+        </div>
+      </div>
+      <div class="card-body py-3" id="dvListPartialViewContainer">
+        <partial name="ProductPartials/_ProductListPartial" model="@Model" />
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts{
+  <script>
+    $('document').ready(function () {
+      InitDatatables();
+    })
+  </script>
+}

@@ -1,0 +1,81 @@
+﻿@model ECommerce.Domain.Entities.Category
+@{
+  ViewData["Title"] = "Yeni Kategori Ekle";
+}
+
+
+<div class="row">
+  <div class="col-xxl-12">
+    <div class="card card-xxl-stretch mb-5 mb-xl-8">
+      <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1">Yeni Kategori Ekle</span>
+        </h3>
+      </div>
+      <div class="card-body">
+        <form asp-action="Add" asp-antiforgery="true"
+              data-ajax-success="OnSuccess"
+              data-ajax-failure="OnFailure"
+              data-ajax-complete="OnComplated"
+              data-ajax-begin="OnBegin"
+              data-ajax="true"
+              data-ajax-mode="replace"
+              data-ajax-method="POST" 
+              enctype="multipart/form-data">
+
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="mb-5">
+            <label class="form-label">Kategori Seçimi</label>
+            <select asp-for="ParentCategoryId" asp-items="@ViewBag.Categories" class="form-select">
+              <option value="0">Seçim Yapınız</option>
+            </select>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Definition" class="form-label"></label>
+            <input asp-for="Definition" class="form-control" />
+            <span asp-validation-for="Definition" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label class="form-label">Resim Yükle</label>
+            <input type="file" name="File" id="File" class="form-control" />
+          </div>
+          <div class="mb-5">
+            <label class="form-label">Resim Önizleme</label>
+            <img id="imgPre" src="https://place-hold.it/900x450" width="100%" />
+          </div>
+          <a class="btn btn-secondary mr-2" asp-action="List"><i class="fa fa-arrow-left"></i>Listeye Dön</a>
+          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts
+{
+  <script>
+
+
+    $("#File").on("change", function () {
+      var input = this;
+      var url = $(this).val();
+
+      var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+
+      if (input.files && input.files[0] && (ext === "gif" || ext === "jpg" || ext === "png")) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#imgPre").attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+      else {
+        toastr["error"]("Lütfen Resim Dosyası Seçiniz");
+        $("#imgPre").attr('src', 'https://place-hold.it/900x450');
+      }
+
+    })
+
+
+  </script>
+}

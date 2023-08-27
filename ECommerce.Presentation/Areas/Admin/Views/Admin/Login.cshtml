@@ -1,0 +1,53 @@
+﻿@model ECommerce.Domain.Dtos.LoginDto
+@{
+  Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Datahouse Akademi | ECommerce</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Datahouse Akademi | ECommerce" />
+  <meta name="keywords" content="Datahouse Akademi | ECommerce" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+  <partial name="_StylePartial" />
+</head>
+<body id="kt_body" class="bg-body">
+  <div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/development-hd.png)">
+      <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+
+        <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+          <form class="form w-100" asp-controller="Admin" asp-action="Login">
+
+            <div class="text-center mb-10">
+              <img alt="Logo" src="/WebContent/assets/imgs/theme/logo.svg" style="width: 70%;" />
+              <div class="text-black-500 fw-semibold fs-6 mt-5">Yönetici Giriş Sayfası</div>
+            </div>
+            <div class="fv-row mb-10">
+              <label class="form-label fs-6 fw-bolder text-dark" asp-for="EMail">E-Mail</label>
+              <input class="form-control form-control-lg form-control-solid" type="text" asp-for="EMail" />
+              <span class="text-danger" asp-validation-for="EMail"></span>
+            </div>
+            <div class="fv-row mb-10">
+              <label class="form-label fs-6 fw-bolder text-dark" asp-for="Password">Password</label>
+              <input class="form-control form-control-lg form-control-solid" type="password" autocomplete="off" asp-for="Password" />
+              <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
+                <span class="indicator-label">Giriş Yap</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <partial name="_ScriptPartial" />
+  <partial name="_ValidationScriptsPartial" />
+
+</body>
+</html>

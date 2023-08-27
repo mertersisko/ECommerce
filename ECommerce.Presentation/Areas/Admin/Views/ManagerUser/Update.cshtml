@@ -1,0 +1,80 @@
+﻿@model ECommerce.Domain.Entities.ManagerUser
+@{
+  ViewData["Title"] = "Update";
+}
+
+<div class="row">
+  <div class="col-xxl-12">
+    <div class="card card-xxl-stretch mb-5 mb-xl-8">
+      <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1">Yönetici Kullanıcısı Güncelle</span>
+        </h3>
+      </div>
+      <div class="card-body">
+        <form asp-action="Update" asp-antiforgery="true"
+              data-ajax-success="OnSuccess"
+              data-ajax-failure="OnFailure"
+              data-ajax-complete="OnComplated"
+              data-ajax-begin="OnBegin"
+              data-ajax="true"
+              data-ajax-mode="replace"
+              data-ajax-method="POST">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <input type="hidden" asp-for="Id" value="@Model.Id" />
+          <input type="hidden" asp-for="EnchKey" value="@Model.EnchKey" />
+          <div class="mb-5">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Surname" class="form-label"></label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="EMail" class="form-label"></label>
+            <input asp-for="EMail" class="form-control" type="email" />
+            <span asp-validation-for="EMail" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="form-control" type="text" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <button id="btnShowPassword" type="button" class="btn btn-sm btn-primary mt-2"><i class="fa fa-eye text-white " style="font-size:1.5rem"></i></button>
+          </div>
+
+          <a class="btn btn-secondary mr-2" asp-action="List"><i class="fa fa-arrow-left"></i>Listeye Geri Dön</a>
+          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts
+  {
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+      $("#Password").attr('type', 'password');
+      $("#PasswordRepeat").attr('type', 'password');
+
+    });
+
+    $("#btnShowPassword").on('click', function () {
+      if ($("#Password").attr('type') === "text") {
+
+        $("#Password").attr('type', 'password');
+        $("#PasswordRepeat").attr('type', 'password');
+      } else {
+        $("#Password").attr('type', 'text');
+        $("#PasswordRepeat").attr('type', 'text');
+      }
+    });
+
+  </script>
+}
+

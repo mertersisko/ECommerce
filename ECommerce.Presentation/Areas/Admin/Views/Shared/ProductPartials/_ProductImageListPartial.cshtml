@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ECommerce.Domain.Entities.ProductImages>
+
+<table class="table table-striped table-row-bordered gy-5 gs-7 dt-init" id="tblProductImage">
+  <thead>
+  <tr>
+    <th>Sil</th>
+    <th>Resim</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        <a onclick="ImageDelete(@item.Id)" data-toggle="tooltip" title="Sil"><i class="far fa-trash-alt text-danger ml-2" style="font-size: 1.5rem; cursor: pointer;"></i> </a>
+      </td>
+
+      <td>
+          <img src="/WebContent/ProductImage/@item.ImagePath" height="200" width="100%" />
+      </td>
+    </tr>
+  }
+  </tbody>
+</table>

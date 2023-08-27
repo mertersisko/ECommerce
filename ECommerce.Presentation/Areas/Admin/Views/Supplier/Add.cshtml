@@ -1,0 +1,108 @@
+﻿@model ECommerce.Domain.Entities.Supplier
+@{
+  ViewData["Title"] = "Yeni Tedarikçi Ekle";
+}
+
+
+<div class="row">
+  <div class="col-xxl-12">
+    <div class="card card-xxl-stretch mb-5 mb-xl-8">
+      <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1">Yeni Tedarikçi Ekle</span>
+        </h3>
+      </div>
+      <div class="card-body">
+        <form asp-action="Add" asp-antiforgery="true"
+              data-ajax-success="OnSuccess"
+              data-ajax-failure="OnFailure"
+              data-ajax-complete="OnComplated"
+              data-ajax-begin="OnBegin"
+              data-ajax="true"
+              data-ajax-mode="replace"
+              data-ajax-method="POST">
+
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="mb-5">
+            <label class="form-label">Şehir Seçimi</label>
+            <select id="slcCity" asp-items="@ViewBag.Cities" class="form-select"></select>
+          </div>
+          <div class="mb-5">
+            <label asp-for="TownId" class="form-label"></label>
+            <select asp-for="TownId" class="form-select"></select>
+            <span asp-validation-for="TownId" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Code" class="form-label"></label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="PhoneNumber" class="form-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Mail" class="form-label"></label>
+            <input asp-for="Mail" class="form-control" />
+            <span asp-validation-for="Mail" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="BalanceStatus" class="form-label"></label>
+            <input asp-for="BalanceStatus" class="form-control" type="number" />
+            <span asp-validation-for="BalanceStatus" class="text-danger"></span>
+          </div>
+          <div class="mb-5">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+          </div>
+          <a class="btn btn-secondary mr-2" asp-action="List"><i class="fa fa-arrow-left"></i>Listeye Dön</a>
+          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts
+  {
+  <script>
+
+    $(document).ready(function () {
+      $("#slcCity").val("98");
+      $("#slcCity").trigger('change');
+    });
+
+
+    $("#slcCity").on('change', function () {
+
+      $.ajax({
+        url: '/Supplier/GetTownsByCityId/' + $(this).val(),
+        type: 'GET',
+        processData: false,
+        cache: false,
+        success: function (data) {
+          $("#TownId").empty();
+
+          console.log(data);
+
+          $.each(data,
+            function (index, element) {
+              var option = $("<option>");
+              option.val(element.value);
+              option.text(element.text);
+              $("#TownId").append(option);
+            });
+        }
+      });
+
+    })
+
+  </script>
+}
